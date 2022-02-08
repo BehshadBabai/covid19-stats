@@ -7,7 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import FavoriteContriesPage from './features/favoriteCountries/favoriteCountriesPage';
-import AllContriesPage from './features/allCountries/allCountriesPage';
+import SearchContriesPage from './features/searchCountries/searchCountriesPage';
 import Error from './features/error/errorPage';
 
 function App() {
@@ -15,11 +15,11 @@ function App() {
     <>
     <Link to="/">Covid19-Stats</Link>
     <nav>
-      <Link to="/">All Countries</Link>
+      <Link to="/">Search Countries</Link>
       <Link to="/favorite">Favorite Countries</Link>
     </nav>
     <Routes>
-      <Route path="/" element={<AllContriesPage />} />
+      <Route path="/" element={<SearchContriesPage />} />
       <Route path="/favorite" element={<FavoriteContriesPage />} />
       <Route path="*" element={<Error />} />
     </Routes>
