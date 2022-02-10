@@ -2,6 +2,7 @@ import React from "react";
 import data from "../../api/data";
 
 export default function SearchContriesPage() {
+  data.search('iran');
   return (
     <>
       <section id="popular">
