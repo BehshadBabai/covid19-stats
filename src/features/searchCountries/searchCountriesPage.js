@@ -16,7 +16,6 @@ export default function SearchContriesPage() {
   };
 
   useEffect(() => {
-    console.log(currentCountryObject);
     if (currentCountryObject.country) {
       setDisplayResult(true);
     } else {
@@ -108,6 +107,7 @@ export default function SearchContriesPage() {
             latitude={currentCountryObject.latitude}
             longitude={currentCountryObject.longitude}
             isFavorite={currentCountryObject.isFavorite}
+            code={currentCountryObject.code}
           />
         )}
         {searchPerformed && !displayResult && <p>No country was found based on your search term. Please try another term to see a country!</p>}
