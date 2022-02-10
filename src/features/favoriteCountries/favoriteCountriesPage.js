@@ -23,10 +23,10 @@ export default function FavoriteContriesPage() {
           {favoriteCountries.map((country) => {
             return (
               <tr key={country.code}>
-                <td>{country.name}</td>
+                <td>{country.country}</td>
                 <td>{country.confirmed}</td>
                 <td>{country.critical}</td>
-                <td>{country.deceased}</td>
+                <td>{country.deaths}</td>
                 <td>{country.recovered}</td>
                 <td>{country.latitude}</td>
                 <td>{country.longitude}</td>
