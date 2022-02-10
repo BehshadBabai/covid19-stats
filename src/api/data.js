@@ -1,4 +1,3 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 const data = {
   popular: [
     { name: "Canada", src: "../../img/canada.jpeg" },
@@ -21,7 +20,6 @@ const data = {
     const jsonResponse = await response.json();
     return jsonResponse;
   },
-  //fetch(`https://covid-19-data.p.rapidapi.com/country?name=${country}`,
   searchFlag: (country) => {
     //fetch(`https://restcountries.com/v3.1/name/${country}`)
   },

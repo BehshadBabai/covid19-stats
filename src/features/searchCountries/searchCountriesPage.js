@@ -48,13 +48,40 @@ export default function SearchContriesPage() {
       //show what you found or didn't find
     }); //result[0] is the object
   };
+  const handleClick = (e) => {
+    setSearchPerformed(true);
+    let countryName = "";
+    if(e.target.id){
+      countryName = e.target.id;
+    }else{
+      countryName = e.target.parentNode.id;
+    }
+    data.search(countryName).then((result) => {
+      const found = favoriteCountries.some((el) => {
+        return el.country === result[0].country;
+      });
+      if (found) {
+        result[0] = {
+          ...result[0],
+          isFavorite: true,
+        };
+      } else {
+        result[0] = {
+          ...result[0],
+          isFavorite: false,
+        };
+      }
+      setCurrentCountryObject(result[0]);
+      //show what you found or didn't find
+    });
+  }
   return (
     <>
       <section id="popular">
         <h2>Most Popular</h2>
         {data.popular.map((item) => {
           return (
-            <div id="popular" key={item.name}>
+            <div id={item.name} key={item.name} onClick={handleClick} >
               <img src={item.src} />
               <p>{item.name}</p>
             </div>
