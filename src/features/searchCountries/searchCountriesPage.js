@@ -107,6 +107,7 @@ export default function SearchContriesPage() {
             recovered={currentCountryObject.recovered}
             latitude={currentCountryObject.latitude}
             longitude={currentCountryObject.longitude}
+            isFavorite={currentCountryObject.isFavorite}
           />
         )}
         {searchPerformed && !displayResult && <p>No country was found based on your search term. Please try another term to see a country!</p>}

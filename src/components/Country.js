@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 export default function Country(props) {
   return (
@@ -10,6 +10,8 @@ export default function Country(props) {
     <h3 id="recovered">Recovered: </h3><p>{props.recovered}</p>
     <h3 id="latitude">Latitude: </h3><p>{props.latitude}</p>
     <h3 id="longitude">Longitude: </h3><p>{props.longitude}</p>
+    {props.isFavorite && <img src={require('../img/red-heart.png')} alt="like button"/>}
+    {!props.isFavorite && <img src={require('../img/black-heart.png')} alt="like button"/>}
     </div>
   )
 }
