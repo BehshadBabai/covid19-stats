@@ -21,12 +21,12 @@ export default function SearchContriesPage() {
     } else {
       setDisplayResult(false);
     }
-
     //make stuff here
   }, [currentCountryObject]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setDisplayResult(true);
     setSearchPerformed(true);
     data.search(searchTerm).then((result) => {
       const found = favoriteCountries.some((el) => {
@@ -45,7 +45,7 @@ export default function SearchContriesPage() {
       }
       setCurrentCountryObject(result[0]);
       //show what you found or didn't find
-    }); //result[0] is the object
+    }).catch(err=>setDisplayResult(false)); //result[0] is the object
   };
   const handleClick = (e) => {
     setSearchPerformed(true);

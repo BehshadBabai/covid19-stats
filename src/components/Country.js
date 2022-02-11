@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   addFavorite,
   removeFavorite,
 } from "../features/favoriteCountries/favoriteCountriesSlice";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Country(props) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isFavorite,setIsFavorite] = useState(props.isFavorite);
+
   const handleClick = (e) => {
-    if (isFavorite) {
+    if (props.isFavorite) {
       dispatch(
         removeFavorite({
           code: props.code
@@ -30,7 +33,7 @@ export default function Country(props) {
       }));
       e.target.src=require("../img/red-heart.png");
     }
-    setIsFavorite(!isFavorite);
+    navigate('/favorite');
   };
   return (
     <div id="country-preview">
