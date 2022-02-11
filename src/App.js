@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import FavoriteContriesPage from "./features/favoriteCountries/favoriteCountriesPage";
 import SearchContriesPage from "./features/searchCountries/searchCountriesPage";
 import Error from "./features/error/errorPage";

@@ -55,6 +55,7 @@ export default function Country(props) {
           />
         )}
       </div>
+      <br />
       <div id="stats">
         <div id="confirmed">
         <h3>Confirmed: </h3>

@@ -2,6 +2,10 @@ body{
   background-color: #EAE7DC;
 }
 
+#error{
+  margin-left: 2%;
+}
+
 *{
   font-size: 17.25px;
 }
@@ -101,6 +105,11 @@ footer {
   margin-left: 2%;
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+#stats div {
+  flex: 0 1 13em;
 }
 
 #stats div * {
@@ -129,4 +138,65 @@ footer {
 .country-circle img{
   width: 100%;
   height: 100%;
+}
+
+@media only screen and (max-width: 1025px) {
+  #stats div {
+    flex: 0 1 15em;
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  * {
+    font-size: 15px;
+  }
+  #countries div {
+    display: inline;
+    flex: 0 0 17%;
+  }
+  #countries {
+    height: 19em;
+    margin-top: 3em;
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    align-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #countries {
+    height: 16em;
+  }
+  #stats {
+    justify-content:space-around;
+    height: 12.5em;
+  }
+  #flag{
+    width: 18em;
+  }
+}
+
+@media only screen and (max-width: 426px) {
+  * {
+    font-size: 13px;
+  }
+  #countries div {
+    display: inline;
+    flex: 0 0 17%;
+  }
+  #countries {
+    margin-top: 3em;
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    align-content: space-between;
+    height: 12em;
+  }
+}
+
+@media only screen and (max-width: 376px) {
+  #countries {
+    
+  }
 }
