@@ -15,10 +15,10 @@ export default function Country(props) {
     if (props.isFavorite) {
       dispatch(
         removeFavorite({
-          code: props.code
+          code: props.code,
         })
       );
-      e.target.src=require("../img/black-heart.png");
+      e.target.src = require("../img/black-heart.png");
     } else {
       dispatch(
         addFavorite({
@@ -30,41 +30,58 @@ export default function Country(props) {
           recovered: props.recovered,
           latitude: props.latitude,
           longitude: props.longitude,
-      }));
-      e.target.src=require("../img/red-heart.png");
+        })
+      );
+      e.target.src = require("../img/red-heart.png");
     }
-    navigate('/favorite');
+    navigate("/favorite");
   };
   return (
     <div id="country-preview">
-      <img src="flag" alt="flag" />
-      <h2>{props.country}</h2>
-      <h3 id="confirmed">Confirmed: </h3>
-      <p>{props.confirmed}</p>
-      <h3 id="critical">Critical: </h3>
-      <p>{props.critical}</p>
-      <h3 id="deaths">Deceased: </h3>
-      <p>{props.deaths}</p>
-      <h3 id="recovered">Recovered: </h3>
-      <p>{props.recovered}</p>
-      <h3 id="latitude">Latitude: </h3>
-      <p>{props.latitude}</p>
-      <h3 id="longitude">Longitude: </h3>
-      <p>{props.longitude}</p>
-      {props.isFavorite && (
-        <img
-          src={require("../img/red-heart.png")}
-          alt="like button"
-          onClick={handleClick}
-        />
-      )}
-      {!props.isFavorite && (
-        <img
-          src={require("../img/black-heart.png")}
-          alt="like button"
-          onClick={handleClick}
-        />
-      )}
+      <div id="intro">
+        <img src="flag" alt="flag" id="flag" />
+        <h2>{props.country}</h2>
+        {props.isFavorite && (
+          <img
+            src={require("../img/red-heart.png")}
+            alt="like button"
+            onClick={handleClick}
+          />
+        )}
+        {!props.isFavorite && (
+          <img
+            src={require("../img/black-heart.png")}
+            alt="like button"
+            onClick={handleClick}
+          />
+        )}
+      </div>
+      <div id="stats">
+        <div id="confirmed">
+        <h3>Confirmed: </h3>
+        <p>{props.confirmed}</p>
+        </div>
+        <div id="critical">
+        <h3>Critical: </h3>
+        <p>{props.critical}</p>
+        </div>
+        <div id="deaths">
+        <h3>Deceased: </h3>
+        <p>{props.deaths}</p>
+        </div>
+        <div id="recovered">
+        <h3>Recovered: </h3>
+        <p>{props.recovered}</p>
+        </div>
+        <div id="latitude">
+        <h3>Latitude: </h3>
+        <p>{props.latitude}</p>
+        </div>
+        <div id="longitude">
+        <h3>Longitude: </h3>
+        <p>{props.longitude}</p>
+        </div>
+      </div>
     </div>
   );
 }

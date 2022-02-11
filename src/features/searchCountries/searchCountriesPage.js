@@ -26,33 +26,37 @@ export default function SearchContriesPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    document.getElementById('search-bar').value = "";
     setDisplayResult(true);
     setSearchPerformed(true);
-    data.search(searchTerm).then((result) => {
-      const found = favoriteCountries.some((el) => {
-        return el.country === result[0].country;
-      });
-      if (found) {
-        result[0] = {
-          ...result[0],
-          isFavorite: true,
-        };
-      } else {
-        result[0] = {
-          ...result[0],
-          isFavorite: false,
-        };
-      }
-      setCurrentCountryObject(result[0]);
-      //show what you found or didn't find
-    }).catch(err=>setDisplayResult(false)); //result[0] is the object
+    data
+      .search(searchTerm)
+      .then((result) => {
+        const found = favoriteCountries.some((el) => {
+          return el.country === result[0].country;
+        });
+        if (found) {
+          result[0] = {
+            ...result[0],
+            isFavorite: true,
+          };
+        } else {
+          result[0] = {
+            ...result[0],
+            isFavorite: false,
+          };
+        }
+        setCurrentCountryObject(result[0]);
+        //show what you found or didn't find
+      })
+      .catch((err) => setDisplayResult(false)); //result[0] is the object
   };
   const handleClick = (e) => {
     setSearchPerformed(true);
     let countryName = "";
-    if(e.target.id){
+    if (e.target.id) {
       countryName = e.target.id;
-    }else{
+    } else {
       countryName = e.target.parentNode.id;
     }
     data.search(countryName).then((result) => {
@@ -73,26 +77,28 @@ export default function SearchContriesPage() {
       setCurrentCountryObject(result[0]);
       //show what you found or didn't find
     });
-  }
+  };
   return (
     <>
       <section id="popular">
         <h2>Most Popular</h2>
-        {data.popular.map((item) => {
-          return (
-            <div id={item.name} key={item.name} onClick={handleClick} >
-              <img src={item.src} />
-              <p>{item.name}</p>
-            </div>
-          );
-        })}
+        <div id="countries">
+          {data.popular.map((item) => {
+            return (
+              <div id={item.name} key={item.name} onClick={handleClick}>
+                <img src={item.src} />
+                <p>{item.name}</p>
+              </div>
+            );
+          })}
+        </div>
       </section>
       <section id="search-countries">
         <h1>Search Countries</h1>
         <form onSubmit={handleSubmit}>
-          <input type="text" id="search-bar" onChange={handleChange}></input>
+          <input type="text" id="search-bar" onChange={handleChange} placeholder="Search for a country..."></input>
           <button type="submit">
-            <img src="a" alt="search"/>
+            <img src="a" alt="search" />
           </button>
         </form>
       </section>
@@ -110,7 +116,12 @@ export default function SearchContriesPage() {
             code={currentCountryObject.code}
           />
         )}
-        {searchPerformed && !displayResult && <p>No country was found based on your search term. Please try another term to see a country!</p>}
+        {searchPerformed && !displayResult && (
+          <p id="not-found">
+            No country was found based on your search term. Please try another
+            term to see a country!
+          </p>
+        )}
       </section>
     </>
   );

@@ -1,15 +1,17 @@
+body{
+  background-color: #EAE7DC;
+}
+
 *{
-  font-size: 20px;
+  font-size: 17.25px;
 }
 
 nav *{
   text-decoration: none;
-  
-}
-
-#logo {
-  font-size: 1.1em;
-  text-decoration: none;
+  margin: 1%;
+  color: black;
+  padding: 1em;
+  text-align: center;
 }
 
 nav{
@@ -17,4 +19,104 @@ nav{
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
+}
+
+.active{
+  font-weight: bold;
+  background-color: #D8C3A5;
+}
+
+#popular h2{
+  margin-left: 2%;
+  width: 10em;
+  text-decoration: underline;
+  font-size: 1.2em;
+}
+
+#countries div {
+  display: inline;
+}
+
+#countries div p{
+  display: inline;
+  margin-left: 0.3em;;
+}
+
+#countries {
+  margin-top: 3em;
+  display: flex;
+  justify-content:space-evenly;
+}
+
+#countries div:hover{
+  cursor:pointer;
+}
+
+#search-bar {
+  height: 0.8em;
+  padding: 0.5em;
+}
+
+form {
+  display: flex;
+  margin-left: 2%;
+}
+
+#search-countries{
+  margin-top: 3em;
+}
+
+#search-countries h1{
+  margin-left: 2%;
+  width: 10em;
+  text-decoration: underline;
+  font-size: 1.2em;
+}
+
+#not-found{
+  margin-left: 2%;
+}
+
+footer {
+  margin-top: 5em;
+  text-align: center;
+}
+
+#intro {
+  margin-left: 2%;
+  margin-top: 2%;
+}
+
+#intro h2{
+  font-size: 1.5em;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#stats{
+  margin-left: 2%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#stats div * {
+  display: inline;
+}
+
+#confirmed h3{
+  color: darkgreen;
+}
+#critical h3{
+  color: darkorange;
+}
+#deaths h3{
+  color: darkred;
+}
+#recovered h3{
+  color: darkcyan;
+}
+#latitude h3{
+  color: yellowgreen;
+}
+#longitude h3 {
+  color: darkorchid
 }

@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, NavLink } from "react-router-dom";
 import FavoriteContriesPage from "./features/favoriteCountries/favoriteCountriesPage";
 import SearchContriesPage from "./features/searchCountries/searchCountriesPage";
 import Error from "./features/error/errorPage";
@@ -10,8 +10,8 @@ function App() {
     <>
       <header>
         <nav>
-          <Link to="/">Search Countries</Link>
-          <Link to="/favorite">Favorite Countries</Link>
+          <NavLink to="/" activeclasscame="active">Search Countries</NavLink>
+          <NavLink to="/favorite" activeclassname="active">Favorite Countries</NavLink>
         </nav>
       </header>
       <main>
