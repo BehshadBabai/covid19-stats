@@ -1,12 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectFavoriteCountries } from "./favoriteCountriesSlice";
+import './favoritepage.css';
+import { putCommas } from "../../utils/utils";
 
 export default function FavoriteContriesPage() {
   const favoriteCountries = useSelector(selectFavoriteCountries);
   return (
     <section id="favorite-countries">
-      <h1>Favorite Countries</h1>
       <table>
         <thead>
           <tr>
@@ -23,13 +24,13 @@ export default function FavoriteContriesPage() {
           {favoriteCountries.map((country) => {
             return (
               <tr key={country.code}>
-                <td>{country.country}</td>
-                <td>{country.confirmed}</td>
-                <td>{country.critical}</td>
-                <td>{country.deaths}</td>
-                <td>{country.recovered}</td>
-                <td>{country.latitude}</td>
-                <td>{country.longitude}</td>
+                <td>{putCommas(country.country)}</td>
+                <td>{putCommas(country.confirmed)}</td>
+                <td>{putCommas(country.critical)}</td>
+                <td>{putCommas(country.deaths)}</td>
+                <td>{putCommas(country.recovered)}</td>
+                <td>{putCommas(country.latitude)}</td>
+                <td>{putCommas(country.longitude)}</td>
               </tr>
             );
           })}

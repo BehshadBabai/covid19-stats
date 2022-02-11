@@ -5,17 +5,10 @@ import {
   removeFavorite,
 } from "../features/favoriteCountries/favoriteCountriesSlice";
 import { setIsFavorite } from "../features/searchCountries/searchCountriesSlice";
+import { putCommas } from "../utils/utils";
 
 export default function Country(props) {
   const dispatch = useDispatch();
-
-  const putCommas = (str) => {
-    if(typeof str !== 'string')
-      return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    else 
-    return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
   const handleClick = (e) => {
     if (props.isFavorite) {
       dispatch(
