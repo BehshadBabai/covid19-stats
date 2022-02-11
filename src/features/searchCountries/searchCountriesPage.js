@@ -3,6 +3,7 @@ import data from "../../api/data";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectFavoriteCountries } from "../favoriteCountries/favoriteCountriesSlice";
+import { HiOutlineSearch } from 'react-icons/hi';
 import Country from "../../components/Country";
 
 export default function SearchContriesPage() {
@@ -85,9 +86,9 @@ export default function SearchContriesPage() {
         <div id="countries">
           {data.popular.map((item) => {
             return (
-              <div id={item.name} key={item.name} onClick={handleClick}>
-                <img src={item.src} />
-                <p>{item.name}</p>
+              <div id={item.name} className="country-circle" key={item.name} onClick={handleClick}>
+                <img src={require(`../../img/${item.name}.png`)} />
+                <p>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</p>
               </div>
             );
           })}
@@ -98,7 +99,7 @@ export default function SearchContriesPage() {
         <form onSubmit={handleSubmit}>
           <input type="text" id="search-bar" onChange={handleChange} placeholder="Search for a country..."></input>
           <button type="submit">
-            <img src="a" alt="search" />
+          <HiOutlineSearch />
           </button>
         </form>
       </section>

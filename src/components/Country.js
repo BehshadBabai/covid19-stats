@@ -11,6 +11,10 @@ export default function Country(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const putCommas = (str) => {
+    return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const handleClick = (e) => {
     if (props.isFavorite) {
       dispatch(
@@ -59,19 +63,19 @@ export default function Country(props) {
       <div id="stats">
         <div id="confirmed">
         <h3>Confirmed: </h3>
-        <p>{props.confirmed}</p>
+        <p>{putCommas(props.confirmed)}</p>
         </div>
         <div id="critical">
         <h3>Critical: </h3>
-        <p>{props.critical}</p>
+        <p>{putCommas(props.critical)}</p>
         </div>
         <div id="deaths">
         <h3>Deceased: </h3>
-        <p>{props.deaths}</p>
+        <p>{putCommas(props.deaths)}</p>
         </div>
         <div id="recovered">
         <h3>Recovered: </h3>
-        <p>{props.recovered}</p>
+        <p>{putCommas(props.recovered)}</p>
         </div>
         <div id="latitude">
         <h3>Latitude: </h3>

@@ -1,13 +1,13 @@
 const data = {
   popular: [
-    { name: "Canada", src: "../../img/canada.jpeg" },
-    { name: "USA", src: "../../img/usa.jpeg" },
-    { name: "China", src: "../../img/china.jpeg" },
-    { name: "Iran", src: "../../img/iran.jpeg" },
-    { name: "Italy", src: "../../img/italy.jpeg" },
-    { name: "Spain", src: "../../img/spain.jpeg" },
-    { name: "France", src: "../../img/france.jpeg" },
-    { name: "Russia", src: "../../img/russia.jpeg" },
+    { name: "canada", src: "src/img/canada.png" },
+    { name: "usa", src: "../../img/usa.jpeg" },
+    { name: "china", src: "../../img/china.png" },
+    { name: "iran", src: "../../img/iran.png" },
+    { name: "italy", src: "../../img/italy.png" },
+    { name: "spain", src: "../../img/spain.png" },
+    { name: "france", src: "../../img/france.png" },
+    { name: "germany", src: "../../img/germany.png" },
   ],
   search: async (name) => {
     const response = await fetch(`https://covid-19-data.p.rapidapi.com/country?name=${name}`, {
