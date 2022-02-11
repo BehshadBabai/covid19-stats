@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import {
   addFavorite,
   removeFavorite,
 } from "../features/favoriteCountries/favoriteCountriesSlice";
-
-import { useNavigate } from "react-router-dom";
+import { setIsFavorite } from "../features/searchCountries/searchCountriesSlice";
 
 export default function Country(props) {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const putCommas = (str) => {
@@ -25,6 +23,7 @@ export default function Country(props) {
           code: props.code,
         })
       );
+      dispatch(setIsFavorite(false));
       e.target.src = require("../img/black-heart.png");
     } else {
       dispatch(
@@ -39,9 +38,9 @@ export default function Country(props) {
           longitude: props.longitude,
         })
       );
+      dispatch(setIsFavorite(true));
       e.target.src = require("../img/red-heart.png");
     }
-    navigate("/favorite");
   };
   return (
     <div id="country-preview">

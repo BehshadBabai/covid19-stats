@@ -1,59 +1,48 @@
 import React from "react";
 import data from "../../api/data";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectFavoriteCountries } from "../favoriteCountries/favoriteCountriesSlice";
 import { HiOutlineSearch } from 'react-icons/hi';
 import Country from "../../components/Country";
+import { selectSearchCountry, setIsFavorite, addSearchedCountry } from "./searchCountriesSlice"; 
+import { useDispatch } from "react-redux";
 
 export default function SearchContriesPage() {
+  const dispatch = useDispatch();
+  const searchCountry = useSelector(selectSearchCountry);
   const favoriteCountries = useSelector(selectFavoriteCountries);
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentCountryObject, setCurrentCountryObject] = useState({});
   const [displayResult, setDisplayResult] = useState(false);
   const [searchPerformed, setSearchPerformed] = useState(false);
+  
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  useEffect(() => {
-    if (currentCountryObject.country) {
-      setDisplayResult(true);
-    } else {
-      setDisplayResult(false);
-    }
-    //make stuff here
-  }, [currentCountryObject]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     document.getElementById('search-bar').value = "";
-    setDisplayResult(true);
-    setSearchPerformed(true);
     data
       .search(searchTerm)
       .then((result) => {
         const found = favoriteCountries.some((el) => {
           return el.country === result[0].country;
         });
-        if (found) {
-          result[0] = {
-            ...result[0],
-            isFavorite: true,
-          };
-        } else {
-          result[0] = {
-            ...result[0],
-            isFavorite: false,
-          };
+        if(found){
+          dispatch(setIsFavorite(true));
         }
-        setCurrentCountryObject(result[0]);
+        else{
+          dispatch(setIsFavorite(false));
+        }
         //show what you found or didn't find
+        dispatch(addSearchedCountry(result[0]));
+        setDisplayResult(true);
+        setSearchPerformed(true);
       })
       .catch((err) => setDisplayResult(false)); //result[0] is the object
   };
   const handleClick = (e) => {
-    setSearchPerformed(true);
     let countryName = "";
     if (e.target.id) {
       countryName = e.target.id;
@@ -64,19 +53,16 @@ export default function SearchContriesPage() {
       const found = favoriteCountries.some((el) => {
         return el.country === result[0].country;
       });
-      if (found) {
-        result[0] = {
-          ...result[0],
-          isFavorite: true,
-        };
-      } else {
-        result[0] = {
-          ...result[0],
-          isFavorite: false,
-        };
+      if(found){
+        dispatch(setIsFavorite(true));
       }
-      setCurrentCountryObject(result[0]);
+      else{
+        dispatch(setIsFavorite(false));
+      }
       //show what you found or didn't find
+      dispatch(addSearchedCountry(result[0]));
+      setSearchPerformed(true);
+      setDisplayResult(true);
     });
   };
   return (
@@ -106,15 +92,15 @@ export default function SearchContriesPage() {
       <section id="search-result">
         {displayResult && (
           <Country
-            country={currentCountryObject.country}
-            confirmed={currentCountryObject.confirmed}
-            critical={currentCountryObject.critical}
-            deaths={currentCountryObject.deaths}
-            recovered={currentCountryObject.recovered}
-            latitude={currentCountryObject.latitude}
-            longitude={currentCountryObject.longitude}
-            isFavorite={currentCountryObject.isFavorite}
-            code={currentCountryObject.code}
+            country={searchCountry.searchedCountry.country}
+            confirmed={searchCountry.searchedCountry.confirmed}
+            critical={searchCountry.searchedCountry.critical}
+            deaths={searchCountry.searchedCountry.deaths}
+            recovered={searchCountry.searchedCountry.recovered}
+            latitude={searchCountry.searchedCountry.latitude}
+            longitude={searchCountry.searchedCountry.longitude}
+            isFavorite={searchCountry.isFavorite}
+            code={searchCountry.searchedCountry.code}
           />
         )}
         {searchPerformed && !displayResult && (
