@@ -1,5 +1,9 @@
-#favorite-countries h1{
+#favorite-countries-large h1{
   text-align: center;
+}
+
+#favorite-countries-small{
+  display: none;
 }
 
 table , td, th{
@@ -26,4 +30,21 @@ th:nth-child(1) {
 
 table tbody tr{
   border: 1 px solid black;
+}
+@media only screen and (max-width:680px) {
+  #favorite-countries-large {
+    display: none;
+  }
+  #favorite-countries-small {
+    display:block;
+  }
+  details {
+    margin-left: 15%;
+  }
+  details p {
+    margin-left: 2em;
+  }
+  #no-favorites{
+    margin-left: 5%;
+  }
 }

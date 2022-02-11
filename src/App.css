@@ -194,9 +194,3 @@ footer {
     height: 12em;
   }
 }
-
-@media only screen and (max-width: 376px) {
-  #countries {
-    
-  }
-}
