@@ -3,59 +3,75 @@ import data from "../../api/data";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectFavoriteCountries } from "../favoriteCountries/favoriteCountriesSlice";
-import { HiOutlineSearch } from 'react-icons/hi';
+import { HiOutlineSearch } from "react-icons/hi";
 import Country from "../../components/Country";
-import { selectSearchCountry, setIsFavorite, addSearchedCountry } from "./searchCountriesSlice"; 
+import {
+  selectSearchCountry,
+  setIsFavorite,
+  addSearchedCountry,
+} from "./searchCountriesSlice";
 import { useDispatch } from "react-redux";
+import Loader from "../../components/Loader/Loader";
 
 export default function SearchContriesPage() {
   const dispatch = useDispatch();
   const searchCountry = useSelector(selectSearchCountry);
   const favoriteCountries = useSelector(selectFavoriteCountries);
+  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [flagSrc,setFlagSrc] = useState("");
+  const [flagSrc, setFlagSrc] = useState("");
   const [displayResult, setDisplayResult] = useState(false);
   const [searchPerformed, setSearchPerformed] = useState(false);
-  
+
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    document.getElementById('search-bar').value = "";
+    setLoading(true);
+    document.getElementById("search-bar").value = "";
     data
       .search(searchTerm)
       .then((result) => {
         const found = favoriteCountries.some((el) => {
           return el.country === result[0].country;
         });
-        if(found){
+        if (found) {
           dispatch(setIsFavorite(true));
-        }
-        else{
+        } else {
           dispatch(setIsFavorite(false));
         }
         //show what you found or didn't find
         dispatch(addSearchedCountry(result[0]));
-        data.searchFlag(searchTerm).then((result)=>{
-        //insuring accuracy of flag
-        let i = 0;
-        for(i;i<result.length;i++){
-          if(result[i].name.common.toString().toLowerCase() === searchTerm){
-            break;
-          }
-        }
-          setFlagSrc(result[i].flags.png);
-        }).catch(err=>{
-          setFlagSrc("");
-        });
+        data
+          .searchFlag(searchTerm)
+          .then((result) => {
+            //insuring accuracy of flag
+            let i = 0;
+            for (i; i < result.length; i++) {
+              if (
+                result[i].name.common.toString().toLowerCase() === searchTerm
+              ) {
+                break;
+              }
+            }
+            setFlagSrc(result[i].flags.png);
+          })
+          .catch((err) => {
+            setFlagSrc("");
+          });
         setDisplayResult(true);
         setSearchPerformed(true);
+        setLoading(false);
       })
-      .catch((err) => setDisplayResult(false)); //result[0] is the object
+      .catch((err) => {
+        setDisplayResult(false);
+        setLoading(false);
+      }); //result[0] is the object
   };
   const handleClick = (e) => {
+    setLoading(true);
     let countryName = "";
     if (e.target.id) {
       countryName = e.target.id;
@@ -66,42 +82,59 @@ export default function SearchContriesPage() {
       const found = favoriteCountries.some((el) => {
         return el.country === result[0].country;
       });
-      if(found){
+      if (found) {
         dispatch(setIsFavorite(true));
-      }
-      else{
+      } else {
         dispatch(setIsFavorite(false));
       }
       //show what you found or didn't find
       dispatch(addSearchedCountry(result[0]));
-      if(countryName==='usa'){
-        countryName = 'united states';
+      if (countryName === "usa") {
+        countryName = "united states";
       }
-      data.searchFlag(countryName).then((result)=>{
-        //insuring accuracy of flag
-        let i = 0;
-        for(i;i<result.length;i++){
-          if(result[i].name.common.toString().toLowerCase() === countryName){
-            break;
+      data
+        .searchFlag(countryName)
+        .then((result) => {
+          //insuring accuracy of flag
+          let i = 0;
+          for (i; i < result.length; i++) {
+            if (
+              result[i].name.common.toString().toLowerCase() === countryName
+            ) {
+              break;
+            }
           }
-        }
-        setFlagSrc(result[i].flags.png);
-      }).catch(err=>{
-        setFlagSrc("");
-      });
+          setFlagSrc(result[i].flags.png);
+        })
+        .catch((err) => {
+          setFlagSrc("");
+        });
+      setLoading(false);
       setSearchPerformed(true);
       setDisplayResult(true);
-    });
+    }).catch((err) => {
+      setDisplayResult(false);
+      setLoading(false);
+    });;
   };
   return (
     <>
+      {loading && <Loader />}
       <section id="popular">
         <h2>Most Popular</h2>
         <div id="countries">
           {data.popular.map((item) => {
             return (
-              <div id={item.name} className="country-circle" key={item.name} onClick={handleClick}>
-                <img src={require(`../../img/${item.name}.png`)} alt={item.name}/>
+              <div
+                id={item.name}
+                className="country-circle"
+                key={item.name}
+                onClick={handleClick}
+              >
+                <img
+                  src={require(`../../img/${item.name}.png`)}
+                  alt={item.name}
+                />
                 {/*<p>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</p>*/}
               </div>
             );
@@ -111,9 +144,14 @@ export default function SearchContriesPage() {
       <section id="search-countries">
         <h1>Search Countries</h1>
         <form onSubmit={handleSubmit}>
-          <input type="text" id="search-bar" onChange={handleChange} placeholder="Search for a country..."></input>
+          <input
+            type="text"
+            id="search-bar"
+            onChange={handleChange}
+            placeholder="Search for a country..."
+          ></input>
           <button type="submit">
-          <HiOutlineSearch />
+            <HiOutlineSearch />
           </button>
         </form>
       </section>
@@ -129,7 +167,7 @@ export default function SearchContriesPage() {
             longitude={searchCountry.searchedCountry.longitude}
             isFavorite={searchCountry.isFavorite}
             code={searchCountry.searchedCountry.code}
-            flagSrc = {flagSrc}
+            flagSrc={flagSrc}
           />
         )}
         {searchPerformed && !displayResult && (
