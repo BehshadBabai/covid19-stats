@@ -51,7 +51,7 @@ export default function SearchContriesPage() {
             let i = 0;
             for (i; i < result.length; i++) {
               if (
-                result[i].name.common.toString().toLowerCase() === searchTerm
+                result[i].name.common.toString().toLowerCase() === searchTerm.toLowerCase()
               ) {
                 break;
               }
