@@ -13,6 +13,7 @@ export default function SearchContriesPage() {
   const searchCountry = useSelector(selectSearchCountry);
   const favoriteCountries = useSelector(selectFavoriteCountries);
   const [searchTerm, setSearchTerm] = useState("");
+  const [flagSrc,setFlagSrc] = useState("");
   const [displayResult, setDisplayResult] = useState(false);
   const [searchPerformed, setSearchPerformed] = useState(false);
   
@@ -37,6 +38,18 @@ export default function SearchContriesPage() {
         }
         //show what you found or didn't find
         dispatch(addSearchedCountry(result[0]));
+        data.searchFlag(searchTerm).then((result)=>{
+        //insuring accuracy of flag
+        let i = 0;
+        for(i;i<result.length;i++){
+          if(result[i].name.common.toString().toLowerCase() === searchTerm){
+            break;
+          }
+        }
+          setFlagSrc(result[i].flags.png);
+        }).catch(err=>{
+          setFlagSrc("");
+        });
         setDisplayResult(true);
         setSearchPerformed(true);
       })
@@ -61,6 +74,21 @@ export default function SearchContriesPage() {
       }
       //show what you found or didn't find
       dispatch(addSearchedCountry(result[0]));
+      if(countryName==='usa'){
+        countryName = 'united states';
+      }
+      data.searchFlag(countryName).then((result)=>{
+        //insuring accuracy of flag
+        let i = 0;
+        for(i;i<result.length;i++){
+          if(result[i].name.common.toString().toLowerCase() === countryName){
+            break;
+          }
+        }
+        setFlagSrc(result[i].flags.png);
+      }).catch(err=>{
+        setFlagSrc("");
+      });
       setSearchPerformed(true);
       setDisplayResult(true);
     });
@@ -101,6 +129,7 @@ export default function SearchContriesPage() {
             longitude={searchCountry.searchedCountry.longitude}
             isFavorite={searchCountry.isFavorite}
             code={searchCountry.searchedCountry.code}
+            flagSrc = {flagSrc}
           />
         )}
         {searchPerformed && !displayResult && (

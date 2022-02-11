@@ -38,7 +38,7 @@ export default function Country(props) {
   return (
     <div id="country-preview">
       <div id="intro">
-        <img src="flag" alt="flag" id="flag" />
+        <img src={props.flagSrc} alt="flag" id="flag" />
         <h2>{props.country}</h2>
         {props.isFavorite && (
           <img

@@ -20,8 +20,10 @@ const data = {
     const jsonResponse = await response.json();
     return jsonResponse;
   },
-  searchFlag: (country) => {
-    //fetch(`https://restcountries.com/v3.1/name/${country}`)
+  searchFlag: async (country) => {
+    const response = await fetch(`https://restcountries.com/v3.1/name/${country}`);
+    const jsonResponse = await response.json();
+    return jsonResponse;
   },
 };
 export default data;
