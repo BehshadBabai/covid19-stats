@@ -87,8 +87,8 @@ export default function SearchContriesPage() {
           {data.popular.map((item) => {
             return (
               <div id={item.name} className="country-circle" key={item.name} onClick={handleClick}>
-                <img src={require(`../../img/${item.name}.png`)} />
-                <p>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</p>
+                <img src={require(`../../img/${item.name}.png`)} alt={item.name}/>
+                {/*<p>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</p>*/}
               </div>
             );
           })}

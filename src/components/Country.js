@@ -12,7 +12,10 @@ export default function Country(props) {
   const dispatch = useDispatch();
 
   const putCommas = (str) => {
-    return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if(typeof str !== 'string')
+      return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    else 
+    return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   const handleClick = (e) => {
