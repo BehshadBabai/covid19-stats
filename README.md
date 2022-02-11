@@ -1,44 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# 
+Covid-19 Stats
+> This project is a responsive react + redux application that allows users to search for the covid19 statistics of any country and save the stats of those countries by adding them to their favorites.
+> <!--Live demo [_here_]().  If you have the project hosted somewhere, include the link here. -->
 
-## Available Scripts
+## Table of Contents
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Usage](#usage)
+* [Project Status](#project-status)
+* [Room for Improvement](#room-for-improvement)
+* [Acknowledgements](#acknowledgements)
+* [Contact](#contact) 
+<!-- * [License](#license) -->
 
-In the project directory, you can run:
 
-### `npm start`
+## General Information
+This webpage is developed to showcase knowledge of developing responsive webpages using react and managing the state of the application using redux. This project showcases AJAX and working with APIs by communicating with two APIs to fetch information and display it to the user. The website allows users to search for the covid19 statistics of any country and save the stats of those countries by adding them to their favorites. 
+<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Technologies Used
+-  npm - 8.2.0
+-  React.js
+-  Redux.js
+-  REST APIs
+-  HTML - version html5
+-  CSS
+-  git - version 2.32.0.windows.2
+-  github
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
+Allows users to search for the covid19 statistics of any country and save the stats of those countries by adding them to their favorites.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project Status
+Project is: Complete
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Room for Improvement
+- Because of API limitations, too many requests is an edge case that can be removed by further subscription.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Acknowledgements
+- Many thanks to Codecademy for including the idea for this project on their full-stack development path 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Contact
+Created by Behshad Babai - feel free to contact me via email!
+my email: behshad.babai@gmail.com
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- Optional -->
+<!-- ## License -->
+<!-- This project is open source and available under the [... License](). -->
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- You don't have to include all sections - just the one's relevant to your project -->
