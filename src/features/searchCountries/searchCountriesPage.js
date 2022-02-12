@@ -142,7 +142,7 @@ export default function SearchContriesPage() {
         </div>
       </section>
       <section id="search-countries">
-        <h1>Search Countries</h1>
+        <h1>Search Any Country</h1>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
